@@ -1,0 +1,192 @@
+1: Input File:
+var x, y;
+begin
+  x := y + 56;
+end
+
+
+Printout of tokens:
+29 2 x 17 2 y 18 21 2 x 20 2 y 4 3 56 18 22
+
+Error: program does not end in period
+
+2: Input File:
+const;
+begin
+  x := y + 56;
+end.
+
+
+Printout of tokens:
+28 18 21 2 x 20 2 y 4 3 56 18 22 19
+
+Error: constant is not variable
+
+3: Input File:
+var x, y;
+var x;
+begin
+  x := y + 56;
+end.
+
+
+Printout of tokens:
+29 2 x 17 2 y 18 29 2 x 18 21 2 x 20 2 y 4 3 56 18 22 19
+
+Error: variable already in table
+
+4: Input File:
+var x, y;
+const 2;
+begin
+  x := y + 56;
+end.
+
+
+Printout of tokens:
+29 2 x 17 2 y 18 28 3 2 18 21 2 x 20 2 y 4 3 56 18 22 19
+
+Error: invalid syntax when making a constant
+
+5: Input File:
+var x, y;
+const x = a;
+begin
+  x := y + 56;
+end.
+
+
+Printout of tokens:
+29 2 x 17 2 y 18 28 2 x 9 2 a 18 21 2 x 20 2 y 4 3 56 18 22 19
+
+Error: nonnumber is assigned to constant
+
+6: Input File:
+var 2, y;
+begin
+  x := y + 56
+end.
+
+
+Printout of tokens:
+29 3 2 17 2 y 18 21 2 x 20 2 y 4 3 56 22 19
+
+Error: variable is incorrectly assigned
+
+7: Input File:
+var x, y;
+begin
+  x y + 56
+end.
+
+
+Printout of tokens:
+29 2 x 17 2 y 18 21 2 x 2 y 4 3 56 22 19
+
+Error: statement does not have equals sign
+
+8: Input File:
+var x, y;
+begin
+  x := y + 56;
+.
+
+
+Printout of tokens:
+29 2 x 17 2 y 18 21 2 x 20 2 y 4 3 56 18 19
+
+Error: begin in program does not have end
+
+9: Input File:
+var x, y;
+begin
+  x := y + 56;
+  if odd x;
+end.
+
+
+Printout of tokens:
+29 2 x 17 2 y 18 21 2 x 20 2 y 4 3 56 18 23 8 2 x 18 22 19
+
+Error: if statement does not have then
+
+10: Input File:
+var x, y;
+begin
+  x := y + 56;
+  while x > 0;
+end.
+
+
+Printout of tokens:
+29 2 x 17 2 y 18 21 2 x 20 2 y 4 3 56 18 25 2 x 13 3 0 18 22 19
+
+Error: while statement does not have do
+
+11: Input File:
+var x, y;
+begin
+  x := y + 56;
+  read ;
+end.
+
+
+Printout of tokens:
+29 2 x 17 2 y 18 21 2 x 20 2 y 4 3 56 18 32 18 22 19
+
+Error: read not followed by identifier
+
+12: Input File:
+var x, y;
+begin
+  x := y + 56;
+  write a;
+end.
+
+
+Printout of tokens:
+29 2 x 17 2 y 18 21 2 x 20 2 y 4 3 56 18 31 2 a 18 22 19
+
+Error: variable not in table
+
+13: Input File:
+var x, y;
+begin
+  (x := y + 56;
+end.
+
+
+Printout of tokens:
+29 2 x 17 2 y 18 21 15 2 x 20 2 y 4 3 56 18 22 19
+
+Error: parenthesis is not closed
+
+14: Input File:
+var x, y;
+begin
+  x := y + 56;
+  if * 5 then x := y + 5;
+end.
+
+
+Printout of tokens:
+29 2 x 17 2 y 18 21 2 x 20 2 y 4 3 56 18 23 6 3 5 24 2 x 20 2 y 4 3 5 18 22 19
+
+Error: incorrect syntax
+
+15: var x, y;
+procedure 2;
+begin
+  x := y + 56;
+end.
+
+Error: procedure is incorrectly assigned
+
+16: var x, y;
+procedure a;
+procedure a;
+begin
+  x := y + 56;
+end.
+
+Error: procedure already in table
